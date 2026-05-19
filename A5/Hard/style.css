@@ -313,8 +313,8 @@ nav {
   border-radius: 50px;
   border: rgba(0, 0, 0, 1) solid 1px;
 }
-#serve-card1 button i {
-  font-size: 2.3vh;
+.ri-arrow-right-up-line{
+  font-size: 2vh;
 }
 #serve-card1 button:hover {
   background-color: transparent;
@@ -568,6 +568,10 @@ nav {
   border-radius: 50px;
   border: rgba(0, 0, 0, 1) solid 1px;
 }
+.ri-arrow-right-up-line{
+  color: white;
+
+}
 .blog {
   margin-top: 9%;
 }
@@ -655,18 +659,39 @@ nav {
   height: 100%;
   width: 24%;
   overflow: hidden;
-  padding: 20px;
+  /* padding: 20px; */
 }
-.pages-card h1{
+.P-head h1{
     font-size: 1.4vh;
   font-weight: 400;
   margin-bottom: 1vh;
 }
-.P-head
+.P-head{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.137);
+  padding-bottom: 5%;
+  margin-bottom: 5%;
+}
+.P-body h1,a{
+  font-size: 1.4vh;
+  font-weight: 400;
+  margin-bottom: 1vh;
+  text-decoration: none;
+  color: black;
+}
+#P-bod button{
+  font-size: 1vh;
+  color: white;
+  background-color: black;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: rgba(0, 0, 0, 1) solid 1px;
+}
+
 .social {
-  margin-top: 15%;
+  margin-top: 10%;
 }
 .social i {
+  font-size: .8vw;
   padding: 8px 10px;
   color: white;
   background-color: #f0f8ff;
