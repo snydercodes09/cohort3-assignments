@@ -56,8 +56,7 @@ nav {
   color: black;
   font-weight: 300;
   font-size: 1.4vh;
-  margin-bottom: 0;
-  padding-bottom: 0;
+  height: fit-content;
 }
 
 .nav-two button {
@@ -737,12 +736,12 @@ footer h1 span {
   content: "";
   position: absolute;
   width: 100%;
-  height: 1.5px;
+  height: 1px;
   bottom: 0;
   left: 0;
   background-color: black;
   transform-origin: bottom left;
-  transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  transition: all cubic-bezier(0.25, 1, 0.15, 1) 1s;
   transform: scaleX(0);
 }
 .footer-animation:hover::after {
