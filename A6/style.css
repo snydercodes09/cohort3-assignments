@@ -6,7 +6,16 @@
   font-family: roboto;
   src: url(./fonts/RobotoMono-Regular.ttf);
 }
-
+@font-face {
+  font-family: midnight;
+  src: url(./fonts/midnight-sans-rd-12-medium-trial.otf);
+}
+body,html{
+  
+}
+.midnight{
+  font-family: midnight;
+}
 .reckless {
   font-family: reckless;
 }
