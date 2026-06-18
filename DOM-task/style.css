@@ -21,7 +21,7 @@ body.dark{
 }
 
 body{
-    background:var(--bg);
+    background-color:var(--bg);
     color:var(--text);
     font-family:Arial, sans-serif;
     transition:.3s;
@@ -50,7 +50,7 @@ header h1{
     border:none;
     border-radius:50%;
     cursor:pointer;
-    background:var(--primary);
+    background-color:var(--primary);
     color:white;
 }
 
@@ -62,7 +62,7 @@ header h1{
 }
 
 .stat-card{
-    background:var(--card);
+    background-color:var(--card);
     border:1px solid var(--border);
     border-radius:15px;
     padding:20px;
@@ -82,7 +82,7 @@ header h1{
 
 .sidebar,
 .board{
-    background:var(--card);
+    background-color:var(--card);
     border:1px solid var(--border);
     border-radius:20px;
     padding:20px;
@@ -114,10 +114,12 @@ button{
     padding:12px;
     border:none;
     border-radius:10px;
-    background:var(--primary);
+    background-color:var(--primary);
     color:white;
 }
-
+.search-lbl{
+    margin-top: 20px;
+}
 #search{
     width:100%;
     margin-top:10px;
@@ -129,7 +131,7 @@ button{
     padding:12px;
     border:none;
     border-radius:10px;
-    background:crimson;
+    background-color:crimson;
     color:white;
 }
 
@@ -162,15 +164,15 @@ button{
 }
 
 .edit-btn{
-    background:orange;
+    background-color:orange;
 }
 
 .complete-btn{
-    background:green;
+    background-color:green;
 }
 
 .delete-btn{
-    background:red;
+    background-color:red;
 }
 
 .actions button{
@@ -185,7 +187,7 @@ button{
 }
 
 .propagation-section{
-    background: var(--card);
+    background-color: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 25px;
@@ -224,14 +226,14 @@ button{
     padding: 12px;
     border: none;
     border-radius: 10px;
-    background: #1e293b;
-    color: white;
+    background-color: var(--bg);
+    color: var(--text);
     font-weight: bold;
 }
 
 .pipeline-section{
     margin-top: 40px;
-    background: var(--card);
+    background-color: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 25px;
@@ -251,13 +253,16 @@ button{
 
 .pipeline-card{
     width: 220px;
-    background: #111827;
+    background-color: var(--bg);
     border-radius: 16px;
     padding: 20px;
     text-align: center;
     border-top: 3px solid #6366f1;
 }
 
+.aqua{
+    border-top: 3px solid #9501da;
+}
 .orange{
     border-top: 3px solid #f97316;
 }
@@ -284,7 +289,7 @@ button{
 .render-tree{
     width: 460px;
     max-width: 100%;
-    background: #111827;
+    background-color: var(--bg);
     border-top: 3px solid #3b82f6;
     border-radius: 16px;
     padding: 25px;
@@ -298,14 +303,11 @@ button{
 .actions button{
     width:40px;
     height:40px;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     border:none;
     border-radius:10px;
-
     cursor:pointer;
 }
 
@@ -315,17 +317,17 @@ button{
 }
 
 .complete-btn{
-    background:#22c55e;
+    background-color:#22c55e;
     color:white;
 }
 
 .edit-btn{
-    background:#334155;
+    background-color:#334155;
     color:white;
 }
 
 .delete-btn{
-    background:#ef4444;
+    background-color:#ef4444;
     color:white;
 }
 @media(max-width:900px){

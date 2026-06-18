@@ -1,153 +1,151 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Manager</title>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <div>
-          <h1>Task Manager</h1>
-          <p>DOM Manipulation Project</p>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
 
-        <button id="theme-btn">🌙</button>
-      </header>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-      <div class="stats">
-        <div class="stat-card">
-          <h3>Total</h3>
-          <h2 id="total">0</h2>
-        </div>
-
-        <div class="stat-card">
-          <h3>Pending</h3>
-          <h2 id="pending">0</h2>
-        </div>
-
-        <div class="stat-card">
-          <h3>Completed</h3>
-          <h2 id="completed">0</h2>
-        </div>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>TaskFlow</h1>
       </div>
 
-      <div class="dashboard">
-        <aside class="sidebar">
-          <h2>Create Task</h2>
+      <button id="theme-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M8 4l4 2 4-2 4 3-2 4-2-1v10H8V10l-2 1-2-4 4-3z" />
+        </svg>
+      </button>
+    </header>
 
-          <form id="task-form">
-            <input
-              type="text"
-              id="task-input"
-              value="Default Value"
-              placeholder="Enter task..."
-              required
-            />
-
-            <select id="category">
-              <option>Study</option>
-              <option>Work</option>
-              <option>Personal</option>
-            </select>
-
-            <button class="add-btn">Add Task</button>
-          </form>
-
-          <hr />
-
-          <h2>Search</h2>
-
-          <input type="text" id="search" placeholder="Search task..." />
-
-          <button id="clear-all">Clear All</button>
-        </aside>
-
-        <section class="board">
-          <h2>Task Board</h2>
-
-          <div id="task-container"></div>
-        </section>
+    <div class="stats">
+      <div class="stat-card">
+        <h3>Total</h3>
+        <h2 id="total">0</h2>
       </div>
 
-      <section class="propagation-section">
-        <h2>PROPAGATION TEST</h2>
+      <div class="stat-card">
+        <h3>Pending</h3>
+        <h2 id="pending">0</h2>
+      </div>
 
-        <p>
-          Click the child button and check the console for Capturing and
-          Bubbling order.
-        </p>
+      <div class="stat-card">
+        <h3>Completed</h3>
+        <h2 id="completed">0</h2>
+      </div>
+    </div>
 
-        <div id="grandparent">
-          GRANDPARENT
+    <div class="dashboard">
+      <aside class="sidebar">
+        <h2>Create Task</h2>
 
-          <div id="parent">
-            PARENT
+        <form id="task-form">
+          <input type="text" id="task-input" value="Default Value" placeholder="Enter task..." required />
 
-            <button id="child">Child Button</button>
-          </div>
-        </div>
-      </section>
+          <select id="category">
+            <option>Study</option>
+            <option>Work</option>
+            <option>Personal</option>
+          </select>
 
-      <section class="pipeline-section">
-        <h2> Browser Rendering Pipeline</h2>
+          <button class="add-btn">Add Task</button>
+        </form>
+        <h2 class="search-lbl">Search</h2>
 
-        <p>How the browser converts code into pixels.</p>
+        <input type="text" id="search" placeholder="Search task..." />
 
-        <div class="pipeline">
-          <div class="pipeline-card">
-            <h3>HTML</h3>
-            <small>Raw Markup</small>
-          </div>
+        <button id="clear-all">Clear All</button>
+      </aside>
 
-          <span>↓</span>
+      <section class="board">
+        <h2>Task Board</h2>
 
-          <div class="pipeline-card">
-            <h3>Parsing</h3>
-            <small>Characters → Tokens</small>
-          </div>
-
-          <span>↓</span>
-
-          <div class="pipeline-row">
-            <div class="pipeline-card orange">
-              <h3>Tokenization</h3>
-              <small>Tokens Created</small>
-            </div>
-
-            <div class="pipeline-card yellow">
-              <h3>CSS</h3>
-              <small>Stylesheet</small>
-            </div>
-          </div>
-
-          <span>↓</span>
-
-          <div class="pipeline-row">
-            <div class="pipeline-card green">
-              <h3>DOM Tree</h3>
-              <small>HTML Nodes</small>
-            </div>
-
-            <div class="pipeline-card cyan">
-              <h3>CSSOM Tree</h3>
-              <small>Style Rules</small>
-            </div>
-          </div>
-
-          <span>↓</span>
-
-          <div class="render-tree">
-            <h3>Render Tree</h3>
-            <small>Visible Nodes Only</small>
-          </div>
-        </div>
+        <div id="task-container"></div>
       </section>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <section class="propagation-section">
+      <h2>PROPAGATION TEST</h2>
+
+      <p>
+        Click the child button and check the console for Capturing and
+        Bubbling order.
+      </p>
+
+      <div id="grandparent">
+        <h4>GRANDPARENT</h4>
+
+        <div id="parent">
+          <h4>PARENT</h4>
+
+          <button id="child">Child Button</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pipeline-section">
+      <h2>Browser Rendering Pipeline</h2>
+
+      <p>How the browser converts code into pixels.</p>
+
+      <div class="pipeline">
+        <div class="pipeline-card">
+          <h3>HTML</h3>
+          <p>Raw Markup</p>
+        </div>
+
+        <span>↓</span>
+
+        <div class="pipeline-card aqua">
+          <h3>Parsing</h3>
+          <p>Characters → Tokens</p>
+        </div>
+
+        <span>↓</span>
+
+        <div class="pipeline-row">
+          <div class="pipeline-card orange">
+            <h3>Tokenization</h3>
+            <p>Tokens Created</p>
+          </div>
+
+          <div class="pipeline-card yellow">
+            <h3>CSS</h3>
+            <p>Stylesheet</p>
+          </div>
+        </div>
+
+        <span>↓</span>
+
+        <div class="pipeline-row">
+          <div class="pipeline-card green">
+            <h3>DOM Tree</h3>
+            <p>HTML Nodes</p>
+          </div>
+
+          <div class="pipeline-card cyan">
+            <h3>CSSOM Tree</h3>
+            <p>Style Rules</p>
+          </div>
+        </div>
+
+        <span>↓</span>
+
+        <div class="render-tree">
+          <h3>Render Tree</h3>
+          <p>Visible Nodes Only</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
