@@ -1,43 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
-<body>
-    <main>
-        <nav>
-            <div class="nav-pt1">
-                <i class="ri-checkbox-circle-line"></i>
-                <h1>ApexTask</h1>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <h1>Task Manager</h1>
+          <p>DOM Manipulation Project</p>
+        </div>
+
+        <button id="theme-btn">🌙</button>
+      </header>
+
+      <div class="stats">
+        <div class="stat-card">
+          <h3>Total</h3>
+          <h2 id="total">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <h3>Pending</h3>
+          <h2 id="pending">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <h3>Completed</h3>
+          <h2 id="completed">0</h2>
+        </div>
+      </div>
+
+      <div class="dashboard">
+        <aside class="sidebar">
+          <h2>Create Task</h2>
+
+          <form id="task-form">
+            <input
+              type="text"
+              id="task-input"
+              value="Default Value"
+              placeholder="Enter task..."
+              required
+            />
+
+            <select id="category">
+              <option>Study</option>
+              <option>Work</option>
+              <option>Personal</option>
+            </select>
+
+            <button class="add-btn">Add Task</button>
+          </form>
+
+          <hr />
+
+          <h2>Search</h2>
+
+          <input type="text" id="search" placeholder="Search task..." />
+
+          <button id="clear-all">Clear All</button>
+        </aside>
+
+        <section class="board">
+          <h2>Task Board</h2>
+
+          <div id="task-container"></div>
+        </section>
+      </div>
+
+      <section class="propagation-section">
+        <h2>PROPAGATION TEST</h2>
+
+        <p>
+          Click the child button and check the console for Capturing and
+          Bubbling order.
+        </p>
+
+        <div id="grandparent">
+          GRANDPARENT
+
+          <div id="parent">
+            PARENT
+
+            <button id="child">Child Button</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="pipeline-section">
+        <h2> Browser Rendering Pipeline</h2>
+
+        <p>How the browser converts code into pixels.</p>
+
+        <div class="pipeline">
+          <div class="pipeline-card">
+            <h3>HTML</h3>
+            <small>Raw Markup</small>
+          </div>
+
+          <span>↓</span>
+
+          <div class="pipeline-card">
+            <h3>Parsing</h3>
+            <small>Characters → Tokens</small>
+          </div>
+
+          <span>↓</span>
+
+          <div class="pipeline-row">
+            <div class="pipeline-card orange">
+              <h3>Tokenization</h3>
+              <small>Tokens Created</small>
             </div>
-            <div class="nav-pt2">
-                <div class="task-record">
-                    <div class="record on3">
-                        <h2>0</h2>
-                        <p>TOTAL</p>
-                    </div>
-                    <div class="record two">
-                        <h2>0</h2>
-                        <p>PENDING</p>
-                    </div>
-                    <div class="record three">
-                        <h2>0</h2>
-                        <p>DONE</p>
-                    </div>
-                    
-                </div>
-                <div class="toggle-theme">
-                        <i class="ri-sun-line" id="light"></i>
-                        <i class="ri-moon-line" id="dark"></i>
-                    </div>
+
+            <div class="pipeline-card yellow">
+              <h3>CSS</h3>
+              <small>Stylesheet</small>
             </div>
-        </nav>
-    </main>
+          </div>
+
+          <span>↓</span>
+
+          <div class="pipeline-row">
+            <div class="pipeline-card green">
+              <h3>DOM Tree</h3>
+              <small>HTML Nodes</small>
+            </div>
+
+            <div class="pipeline-card cyan">
+              <h3>CSSOM Tree</h3>
+              <small>Style Rules</small>
+            </div>
+          </div>
+
+          <span>↓</span>
+
+          <div class="render-tree">
+            <h3>Render Tree</h3>
+            <small>Visible Nodes Only</small>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
