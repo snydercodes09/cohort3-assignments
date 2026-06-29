@@ -59,252 +59,205 @@ viewBox="0 0 24 24">
 
 let taskId = 1;
 
-
-
 console.log(taskInput.value);
 
 console.log(taskInput.getAttribute("value"));
 
-
-
 form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    e.preventDefault();
+  const title = taskInput.value;
 
-    const title = taskInput.value;
+  if (title === "") {
+    return;
+  }
 
-    if (title === "") {
-        return;
-    }
+  const card = document.createElement("div");
 
-    const card = document.createElement("div");
+  card.classList.add("task-card");
 
-    card.classList.add("task-card");
+  card.setAttribute("data-id", taskId);
+  card.setAttribute("data-status", "pending");
+  card.setAttribute("data-category", category.value);
 
-    card.setAttribute("data-id", taskId);
-    card.setAttribute("data-status", "pending");
-    card.setAttribute("data-category", category.value);
+  const heading = document.createElement("h3");
+  heading.textContent = title;
 
-    const heading = document.createElement("h3");
-    heading.textContent = title;
+  const cat = document.createElement("p");
+  cat.textContent = "Category: " + category.value;
 
-    const cat = document.createElement("p");
-    cat.textContent = "Category: " + category.value;
+  const status = document.createElement("p");
+  status.textContent = "Status: Pending";
 
-    const status = document.createElement("p");
-    status.textContent = "Status: Pending";
+  const actions = document.createElement("div");
+  actions.classList.add("actions");
 
-    const actions = document.createElement("div");
-    actions.classList.add("actions");
+  const completeBtn = document.createElement("button");
+  completeBtn.classList.add("complete-btn");
+  completeBtn.innerHTML = completeIcon;
 
-    const completeBtn = document.createElement("button");
-    completeBtn.classList.add("complete-btn");
-    completeBtn.innerHTML = completeIcon;
+  const editBtn = document.createElement("button");
+  editBtn.classList.add("edit-btn");
+  editBtn.innerHTML = editIcon;
 
-    const editBtn = document.createElement("button");
-    editBtn.classList.add("edit-btn");
-    editBtn.innerHTML = editIcon;
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.innerHTML = deleteIcon;
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("delete-btn");
-    deleteBtn.innerHTML = deleteIcon;
+  actions.append(editBtn);
+  actions.append(completeBtn);
+  actions.append(deleteBtn);
 
-    actions.append(editBtn);
-    actions.append(completeBtn);
-    actions.append(deleteBtn);
+  card.append(heading);
+  card.append(cat);
+  card.append(status);
+  card.append(actions);
 
-    card.append(heading);
-    card.append(cat);
-    card.append(status);
-    card.append(actions);
+  taskContainer.prepend(card);
 
-    taskContainer.prepend(card);
+  taskId++;
 
-    taskId++;
+  form.reset();
 
-    form.reset();
-
-    updateStats();
+  updateStats();
 });
-
 
 // EVENT DELEGATION
 
 taskContainer.addEventListener("click", function (e) {
+  const card = e.target.closest(".task-card");
 
-    const card = e.target.closest(".task-card");
+  if (e.target.classList.contains("delete-btn")) {
+    card.remove();
 
-    if (e.target.classList.contains("delete-btn")) {
+    updateStats();
+  }
 
-        card.remove();
+  if (e.target.classList.contains("complete-btn")) {
+    card.classList.toggle("completed");
 
-        updateStats();
+    if (card.dataset.status === "pending") {
+      card.dataset.status = "completed";
+
+      card.children[2].textContent = "Status: Completed";
+    } else {
+      card.dataset.status = "pending";
+
+      card.children[2].textContent = "Status: Pending";
     }
 
-    if (e.target.classList.contains("complete-btn")) {
+    updateStats();
+  }
 
-        card.classList.toggle("completed");
+  if (e.target.classList.contains("edit-btn")) {
+    const newTask = prompt("Edit Task", card.children[0].textContent);
 
-        if (card.dataset.status === "pending") {
+    if (newTask) {
+      const newHeading = document.createElement("h3");
 
-            card.dataset.status = "completed";
+      newHeading.textContent = newTask;
 
-            card.children[2].textContent = "Status: Completed";
-
-        } else {
-
-            card.dataset.status = "pending";
-
-            card.children[2].textContent = "Status: Pending";
-        }
-
-        updateStats();
+      card.children[0].replaceWith(newHeading);
     }
-
-    if (e.target.classList.contains("edit-btn")) {
-
-        const newTask = prompt(
-            "Edit Task",
-            card.children[0].textContent
-        );
-
-        if (newTask) {
-
-            const newHeading =
-                document.createElement("h3");
-
-            newHeading.textContent = newTask;
-
-            card.children[0].replaceWith(newHeading);
-        }
-    }
+  }
 });
-
 
 // SEARCH
 
 search.addEventListener("input", function () {
+  const cards = document.querySelectorAll(".task-card");
 
-    const cards =
-        document.querySelectorAll(".task-card");
+  cards.forEach(function (card) {
+    const title = card.children[0].textContent.toLowerCase();
 
-    cards.forEach(function (card) {
-
-        const title =
-            card.children[0].textContent.toLowerCase();
-
-        if (
-            title.includes(
-                search.value.toLowerCase()
-            )
-        ) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
+    if (title.includes(search.value.toLowerCase())) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
 });
-
 
 // CLEAR ALL
 
 clearAll.addEventListener("click", function () {
+  taskContainer.innerHTML = "";
 
-    taskContainer.innerHTML = "";
-
-    updateStats();
+  updateStats();
 });
-
 
 // STATS
 
 function updateStats() {
+  const cards = document.querySelectorAll(".task-card");
 
-    const cards =
-        document.querySelectorAll(".task-card");
+  let completedCount = 0;
 
-    let completedCount = 0;
+  cards.forEach(function (card) {
+    if (card.dataset.status === "completed") {
+      completedCount++;
+    }
+  });
 
-    cards.forEach(function (card) {
-
-        if (card.dataset.status === "completed") {
-            completedCount++;
-        }
-    });
-
-    total.textContent = cards.length;
-    completed.textContent = completedCount;
-    pending.textContent =
-        cards.length - completedCount;
+  total.textContent = cards.length;
+  completed.textContent = completedCount;
+  pending.textContent = cards.length - completedCount;
 }
-
 
 // THEME
 
 themeBtn.addEventListener("click", function () {
+  document.body.classList.toggle("dark");
 
-    document.body.classList.toggle("dark");
-
-    if (document.body.dataset.theme === "light") {
-
-        document.body.dataset.theme = "dark";
-
-    } else {
-
-        document.body.dataset.theme = "light";
-    }
+  if (document.body.dataset.theme === "light") {
+    document.body.dataset.theme = "dark";
+  } else {
+    document.body.dataset.theme = "light";
+  }
 });
-
 
 // EVENT BUBBLING
 
-const grandparent =
-    document.querySelector("#grandparent");
+const grandparent = document.querySelector("#grandparent");
 
-const parent =
-    document.querySelector("#parent");
+const parent = document.querySelector("#parent");
 
-const child =
-    document.querySelector("#child");
+const child = document.querySelector("#child");
 
 grandparent.addEventListener("click", function () {
-
-    console.log("Grandparent");
+  console.log("Grandparent");
 });
 
 parent.addEventListener("click", function () {
-
-    console.log("Parent");
+  console.log("Parent");
 });
 
 child.addEventListener("click", function () {
-
-    console.log("Child");
+  console.log("Child");
 });
-
 
 // EVENT CAPTURING
 
 grandparent.addEventListener(
-    "click",
-    function () {
-        console.log("Grandparent Capture");
-    },
-    true
+  "click",
+  function () {
+    console.log("Grandparent Capture");
+  },
+  true,
 );
 
 parent.addEventListener(
-    "click",
-    function () {
-        console.log("Parent Capture");
-    },
-    true
+  "click",
+  function () {
+    console.log("Parent Capture");
+  },
+  true,
 );
 
 child.addEventListener(
-    "click",
-    function () {
-        console.log("Child Capture");
-    },
-    true
+  "click",
+  function () {
+    console.log("Child Capture");
+  },
+  true,
 );

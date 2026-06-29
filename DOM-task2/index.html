@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinTrack Pro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body
+    class="bg-gray-100 font-sans text-gray-900 antialiased transition-colors duration-300 dark:bg-gray-900 dark:text-gray-50"
+  >
+    <div
+      id="login-view"
+      class="auth-container flex min-h-screen items-center justify-center p-5"
+    >
+      <div
+        class="auth-box card w-full max-w-md rounded-lg border border-gray-200 bg-white p-5 text-center shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+      >
+        <h2 class="mb-2 text-2xl font-bold">Welcome Back</h2>
+        <p class="mb-6 text-gray-500 dark:text-gray-400">
+          Login to FinTrack Pro
+        </p>
+        <form id="login-form" class="text-left">
+          <div class="form-group mb-4">
+            <label
+              class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
+              Username
+            </label>
+            <input
+              type="text"
+              id="login-username"
+              class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+              required
+            />
+          </div>
+          <div class="form-group mb-4">
+            <label
+              class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="login-password"
+              class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary w-100 inline-block w-full cursor-pointer rounded-md bg-blue-500 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-blue-600"
+          >
+            Login
+          </button>
+        </form>
+        <p class="switch-auth mt-4 text-sm text-gray-500 dark:text-gray-400">
+          Don't have an account?
+          <a class="text-blue-500 hover:underline" href="#" id="go-to-register">
+            Register here
+          </a>
+        </p>
+      </div>
+    </div>
+    <div
+      id="register-view"
+      class="auth-container flex min-h-screen items-center justify-center p-5"
+      style="display: none"
+    >
+      <div
+        class="auth-box card w-full max-w-md rounded-lg border border-gray-200 bg-white p-5 text-center shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+      >
+        <h2 class="mb-2 text-2xl font-bold">Create Account</h2>
+        <p class="mb-6 text-gray-500 dark:text-gray-400">Join FinTrack Pro</p>
+        <form id="register-form" class="text-left">
+          <div class="form-group mb-4">
+            <label
+              class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
+              Choose a Username
+            </label>
+            <input
+              type="text"
+              id="register-username"
+              class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+              required
+            />
+          </div>
+          <div class="form-group mb-4">
+            <label
+              class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="register-password"
+              class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary w-100 inline-block w-full cursor-pointer rounded-md bg-blue-500 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-blue-600"
+          >
+            Register
+          </button>
+        </form>
+        <p class="switch-auth mt-4 text-sm text-gray-500 dark:text-gray-400">
+          Already have an account?
+          <a class="text-blue-500 hover:underline" href="#" id="go-to-login">
+            Login here
+          </a>
+        </p>
+      </div>
+    </div>
+    <div
+      id="app-view"
+      class="app-layout min-h-screen flex-col md:flex-row"
+      style="display: none"
+    >
+      <aside
+        class="sidebar left-0 top-0 flex h-auto w-full flex-row items-center justify-between border-b border-gray-200 bg-white p-2.5 dark:border-gray-700 dark:bg-gray-800 md:fixed md:h-screen md:w-[250px] md:flex-col md:items-stretch md:justify-start md:border-b-0 md:border-r md:p-0"
+      >
+        <div class="logo p-0 md:p-5 md:py-6">
+          <h2 class="text-xl font-bold text-blue-500">
+            <i class="ri-wallet-3-line mr-2 align-middle"></i> FinTrack Pro
+          </h2>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            Finance Manager
+          </p>
+        </div>
+        <nav
+          class="nav-links flex flex-row gap-2 p-0 md:flex-1 md:flex-col md:px-3"
+        >
+          <a
+            href="#"
+            class="nav-link active rounded-md bg-blue-50 px-4 py-2.5 font-medium text-blue-500 transition hover:bg-blue-50 hover:text-blue-500 hover:no-underline dark:bg-blue-500/10 dark:text-blue-400"
+            id="nav-dashboard"
+          >
+            <i class="ri-dashboard-line mr-2.5 text-xl align-middle"></i>
+            Dashboard
+          </a>
+          <a
+            href="#"
+            class="nav-link rounded-md px-4 py-2.5 font-medium text-gray-500 transition hover:bg-blue-50 hover:text-blue-500 hover:no-underline dark:text-gray-400 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
+            id="nav-settings"
+          >
+            <i class="ri-settings-3-line mr-2.5 text-xl align-middle"></i>
+            Settings
+          </a>
+        </nav>
+        <div class="sidebar-footer hidden p-5 md:block">
+          <button
+            class="btn btn-primary w-100 inline-block w-full cursor-pointer rounded-md bg-blue-500 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-blue-600"
+            id="btn-add-transaction"
+          >
+            <i class="ri-add-line mr-1.5 align-middle"></i> Add Transaction
+          </button>
+        </div>
+      </aside>
+      <main class="main-content flex flex-1 flex-col md:ml-[250px]">
+        <header
+          class="top-header flex h-16 items-center justify-end gap-5 border-b border-gray-200 bg-white px-8 dark:border-gray-700 dark:bg-gray-800"
+        >
+          <div class="user-profile font-medium">
+            <i class="ri-user-smile-line mr-2 text-2xl align-middle"></i>
+            <span id="display-user-name">Finance</span>
+          </div>
+          <button
+            class="btn btn-primary md:hidden inline-flex items-center justify-center cursor-pointer rounded-md bg-blue-500 w-10 h-10 text-white transition hover:bg-blue-600"
+            id="btn-add-transaction-mobile"
+            aria-label="Add Transaction"
+          >
+            <i class="ri-add-line text-xl"></i>
+          </button>
+          <button
+            class="btn btn-outline inline-block cursor-pointer rounded-md border border-gray-200 bg-transparent px-4 py-2.5 text-center text-sm font-medium text-gray-900 transition hover:bg-gray-200 dark:border-gray-700 dark:text-gray-50 dark:hover:bg-gray-700"
+            id="btn-logout"
+          >
+            <i class="ri-logout-box-r-line mr-1.5 align-middle"></i> Logout
+          </button>
+        </header>
+        <div class="content-wrapper mx-auto w-full max-w-6xl p-8">
+          <section id="dashboard-section" class="content-section">
+            <div class="section-header mb-6">
+              <div>
+                <h1 class="section-title mb-1 text-2xl font-bold">
+                  Financial Overview
+                </h1>
+                <p
+                  class="section-subtitle text-sm text-gray-500 dark:text-gray-400"
+                >
+                  Real-time tracking application
+                </p>
+              </div>
+            </div>
+            <div
+              class="summary-cards mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4"
+            >
+              <div
+                class="card rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+              >
+                <h3
+                  class="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400"
+                >
+                  <i class="ri-wallet-line mr-2 align-middle"></i> Current
+                  Balance
+                </h3>
+                <p
+                  class="amount break-all text-3xl font-bold"
+                  id="current-balance"
+                >
+                  $0.00
+                </p>
+              </div>
+              <div
+                class="card rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+              >
+                <h3
+                  class="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400"
+                >
+                  <i class="ri-arrow-up-circle-line mr-2 align-middle"></i>
+                  Total Income
+                </h3>
+                <p
+                  class="amount text-income break-all text-3xl font-bold text-emerald-500"
+                  id="total-income"
+                >
+                  $0.00
+                </p>
+              </div>
+              <div
+                class="card rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+              >
+                <h3
+                  class="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400"
+                >
+                  <i class="ri-arrow-down-circle-line mr-2 align-middle"></i>
+                  Total Expense
+                </h3>
+                <p
+                  class="amount text-expense break-all text-3xl font-bold text-red-500"
+                  id="total-expense"
+                >
+                  $0.00
+                </p>
+              </div>
+              <div
+                class="card rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+              >
+                <h3
+                  class="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400"
+                >
+                  <i class="ri-exchange-dollar-line mr-2 align-middle"></i>
+                  Total Transactions
+                </h3>
+                <p
+                  class="amount break-all text-3xl font-bold"
+                  id="total-transactions"
+                >
+                  0
+                </p>
+              </div>
+            </div>
+            <div
+              class="chart-container card mb-8 rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+            >
+              <h3 class="mb-4 text-base font-semibold">Cash Flow Analysis</h3>
+              <div class="canvas-wrapper h-[300px] w-full">
+                <canvas id="cashFlowChart"></canvas>
+              </div>
+            </div>
+            <div
+              class="transactions-container card mb-8 rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+            >
+              <div
+                class="transactions-header mb-4 flex items-center justify-between"
+              >
+                <h3 class="text-base font-semibold">All Transactions</h3>
+                <select
+                  id="transaction-filter"
+                  class="form-control w-auto rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+                >
+                  <option value="all">All Types</option>
+                  <option value="income">Income Only</option>
+                  <option value="expense">Expense Only</option>
+                </select>
+              </div>
+              <div class="table-responsive overflow-x-auto">
+                <table
+                  class="transactions-table w-full border-collapse text-left"
+                >
+                  <thead>
+                    <tr>
+                      <th
+                        class="border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:border-gray-700 dark:text-gray-400"
+                      >
+                        DATE
+                      </th>
+                      <th
+                        class="border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:border-gray-700 dark:text-gray-400"
+                      >
+                        DESCRIPTION
+                      </th>
+                      <th
+                        class="border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:border-gray-700 dark:text-gray-400"
+                      >
+                        CATEGORY
+                      </th>
+                      <th
+                        class="border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:border-gray-700 dark:text-gray-400"
+                      >
+                        AMOUNT
+                      </th>
+                      <th
+                        class="border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:border-gray-700 dark:text-gray-400"
+                      >
+                        ACTIONS
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="transaction-list"></tbody>
+                </table>
+                <div
+                  id="no-transactions-msg"
+                  class="empty-state p-8 text-center text-gray-500 dark:text-gray-400"
+                  style="display: none"
+                >
+                  No transactions found.
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            id="settings-section"
+            class="content-section"
+            style="display: none"
+          >
+            <div class="section-header mb-6">
+              <h1 class="section-title mb-1 text-2xl font-bold">Settings</h1>
+              <p
+                class="section-subtitle text-sm text-gray-500 dark:text-gray-400"
+              >
+                Manage your account profile and app formatting.
+              </p>
+            </div>
+            <div
+              class="settings-card card rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800"
+            >
+              <h3 class="text-base font-semibold">Profile Details</h3>
+              <div class="settings-grid mt-4 grid max-w-2xl grid-cols-1 gap-5">
+                <div class="form-group mb-4">
+                  <label
+                    class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="setting-name"
+                    class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+                  />
+                </div>
+                <div class="form-group mb-4">
+                  <label
+                    class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+                  >
+                    Primary Currency
+                  </label>
+                  <select
+                    id="setting-currency"
+                    class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+                  >
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="INR">INR (₹)</option>
+                    <option value="JPY">JPY (¥)</option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="settings-divider my-8 h-px bg-gray-200 dark:bg-gray-700"
+              ></div>
+              <h3 class="text-base font-semibold">Preferences</h3>
+              <div
+                class="settings-grid mt-4 grid max-w-2xl grid-cols-1 items-center gap-5"
+              >
+                <div class="form-group mb-4">
+                  <label
+                    class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+                  >
+                    Toggle Theme
+                  </label>
+                </div>
+                <div class="form-group mb-4 text-right">
+                  <label
+                    class="toggle-switch relative inline-block h-6 w-[50px]"
+                  >
+                    <input
+                      type="checkbox"
+                      id="setting-darkmode"
+                      class="peer h-0 w-0 opacity-0"
+                    />
+                    <span
+                      class="slider absolute inset-0 cursor-pointer rounded-full bg-gray-300 transition duration-300 before:absolute before:bottom-[3px] before:left-[3px] before:h-[18px] before:w-[18px] before:rounded-full before:bg-white before:transition before:duration-300 peer-checked:bg-blue-500 peer-checked:before:translate-x-[26px]"
+                    ></span>
+                  </label>
+                </div>
+              </div>
+
+              <div
+                class="settings-divider my-8 h-px bg-gray-200 dark:bg-gray-700"
+              ></div>
+
+              <div class="settings-actions flex gap-4">
+                <button
+                  class="btn btn-primary inline-block cursor-pointer rounded-md bg-blue-500 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-blue-600"
+                  id="btn-save-settings"
+                >
+                  <i class="ri-save-3-line mr-1.5 align-middle"></i> Save
+                  Changes
+                </button>
+                <button
+                  class="btn btn-danger inline-block cursor-pointer rounded-md bg-red-500 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-red-600"
+                  id="btn-reset-data"
+                >
+                  <i class="ri-delete-bin-line mr-1.5 align-middle"></i> Reset
+                  All Data
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <div
+      id="transaction-modal"
+      class="modal fixed inset-0 z-[1000] hidden h-full w-full items-center justify-center overflow-auto bg-black/50"
+    >
+      <div
+        class="modal-content card m-auto w-full max-w-lg rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+      >
+        <div class="modal-header mb-5 flex items-center justify-between">
+          <h3 id="modal-title" class="text-base font-semibold">
+            Add Transaction
+          </h3>
+          <span
+            class="close-modal cursor-pointer text-3xl font-bold text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            id="btn-close-modal"
+          >
+            <i class="ri-close-line align-middle"></i>
+          </span>
+        </div>
+        <form id="transaction-form">
+          <input type="hidden" id="tx-id" />
+
+          <div class="form-group mb-4">
+            <label
+              class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
+              Type
+            </label>
+            <select
+              id="tx-type"
+              class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+              required
+            >
+              <option value="income">Income</option>
+              <option value="expense" selected>Expense</option>
+            </select>
+          </div>
+          <div class="form-group mb-4">
+            <label
+              class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
+              Description
+            </label>
+            <input
+              type="text"
+              id="tx-description"
+              class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+              placeholder="e.g. Amazon, Salary, Coffee"
+              required
+            />
+          </div>
+          <div class="form-group row-group mb-4 flex gap-4">
+            <div class="form-group half-width mb-4 flex-1">
+              <label
+                class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+              >
+                Amount
+              </label>
+              <input
+                type="number"
+                id="tx-amount"
+                class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+                step="0.01"
+                min="0.01"
+                required
+              />
+            </div>
+            <div class="form-group half-width mb-4 flex-1">
+              <label
+                class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+              >
+                Date
+              </label>
+              <input
+                type="date"
+                id="tx-date"
+                class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group mb-4">
+            <label
+              class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
+              Category
+            </label>
+            <select
+              id="tx-category"
+              class="form-control w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-900 transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-50"
+              required
+            >
+              <option value="" disabled selected>Select a category</option>
+              <option value="Salary">Salary</option>
+              <option value="Food & Dining">Food & Dining</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Petrol & Auto">Petrol & Auto</option>
+              <option value="Recharge & Bills">Recharge & Bills</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary w-100 inline-block w-full cursor-pointer rounded-md bg-blue-500 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-blue-600"
+          >
+            Save Transaction
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
