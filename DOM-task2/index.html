@@ -8,8 +8,9 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind = {
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -20,10 +21,8 @@
         },
       };
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js" defer></script>
   </head>
 
   <body
@@ -405,23 +404,23 @@
               ></div>
               <h3 class="text-base font-semibold">Preferences</h3>
               <div
-                class="settings-grid mt-4 grid max-w-2xl grid-cols-1 items-center gap-5"
+                class="settings-grid mt-4 flex max-w-2xl items-center justify-between gap-5"
               >
-                <div class="form-group mb-4">
+                <div class="form-group">
                   <label
-                    class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-gray-50"
+                    class="text-sm font-medium text-gray-900 dark:text-gray-50"
                   >
                     Toggle Theme
                   </label>
                 </div>
-                <div class="form-group mb-4 text-right">
+                <div class="form-group">
                   <label
                     class="toggle-switch relative inline-block h-6 w-[50px]"
                   >
                     <input
                       type="checkbox"
                       id="setting-darkmode"
-                      class="peer h-0 w-0 opacity-0"
+                      class="peer sr-only"
                     />
                     <span
                       class="slider absolute inset-0 cursor-pointer rounded-full bg-gray-300 transition duration-300 before:absolute before:bottom-[3px] before:left-[3px] before:h-[18px] before:w-[18px] before:rounded-full before:bg-white before:transition before:duration-300 peer-checked:bg-blue-500 peer-checked:before:translate-x-[26px]"
@@ -567,5 +566,7 @@
         </form>
       </div>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
