@@ -40,32 +40,30 @@
         <div class="flex flex-col justify-center h-full">
           <div class="flex items-center gap-2 mb-2">
             <div id="weatherIconContainer" class="text-white scale-110 hidden"></div>
-            <span id="weatherConditionText"
-              class="text-lg text-white/90 font-medium tracking-wide drop-shadow-sm">Sunny</span>
+            <span id="weatherConditionText" class="text-lg text-white/90 font-medium tracking-wide drop-shadow-sm">
+              Loading...
+            </span>
           </div>
 
           <div class="flex items-center gap-6">
             <div class="flex items-start">
               <h3 id="miniWeatherTemp"
-                class="text-[72px] font-light text-white leading-none tracking-tighter drop-shadow-md">
-                25
-              </h3>
+                class="text-[72px] font-light text-white leading-none tracking-tighter drop-shadow-md">--</h3>
+
               <span class="text-3xl font-light text-white drop-shadow-md mt-2">°</span>
             </div>
 
             <div class="w-[1px] h-16 bg-white/30"></div>
 
             <div class="flex flex-col gap-1 justify-center">
-              <p id="widgetDate" class="text-[17px] text-white font-medium drop-shadow-md">
-                Mon, 1 Jan
-              </p>
+              <p id="widgetDate" class="text-[17px] text-white font-medium drop-shadow-md">Loading...</p>
               <div class="flex items-center gap-1.5 text-white/90 drop-shadow-md">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
                   class="text-white">
                   <path
                     d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
-                <span id="miniWeatherCity" class="text-[15px] font-medium">Guwahati</span>
+                <span id="miniWeatherCity" class="text-[15px] font-medium">Loading...</span>
               </div>
             </div>
           </div>
@@ -139,7 +137,8 @@
       <div
         class="feature-card elem relative overflow-hidden rounded-3xl glass-card cursor-pointer group aspect-[4/3] md:aspect-auto"
         data-target="todo">
-        <img src="https://images.unsplash.com/photo-1759661937582-0ccd5dacf20f?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        <img
+          src="https://images.unsplash.com/photo-1759661937582-0ccd5dacf20f?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
           alt="Todo" />
         <div
@@ -166,7 +165,8 @@
       <div
         class="feature-card elem relative overflow-hidden rounded-3xl glass-card cursor-pointer group aspect-[4/3] md:aspect-auto"
         data-target="planner">
-        <img src="https://images.unsplash.com/photo-1435527173128-983b87201f4d?q=80&w=1167&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        <img
+          src="https://images.unsplash.com/photo-1435527173128-983b87201f4d?q=80&w=1167&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
           alt="Planner" />
         <div
@@ -193,7 +193,8 @@
       <div
         class="feature-card elem relative overflow-hidden rounded-3xl glass-card cursor-pointer group aspect-[4/3] md:aspect-auto"
         data-target="motivation">
-        <img src="https://images.unsplash.com/photo-1558537112-ed307f81124c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        <img
+          src="https://images.unsplash.com/photo-1558537112-ed307f81124c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
           alt="Motivation" />
         <div
@@ -220,8 +221,9 @@
       <div
         class="feature-card elem relative overflow-hidden rounded-3xl glass-card cursor-pointer group aspect-[4/3] md:aspect-auto lg:col-span-2"
         data-target="pomodoro">
-        <img src="https://images.unsplash.com/photo-1634906344066-2c9dfd5e8ef7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-           class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 scale-[1.2] group-hover:scale-[1.3] opacity-90"
+        <img
+          src="https://images.unsplash.com/photo-1634906344066-2c9dfd5e8ef7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 scale-[1.2] group-hover:scale-[1.3] opacity-90"
           alt="Pomodoro" />
         <div
           class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 dark:from-gray-900/90 dark:via-gray-900/40 to-transparent">
@@ -247,7 +249,8 @@
       <div
         class="feature-card elem relative overflow-hidden rounded-3xl glass-card cursor-pointer group aspect-[4/3] md:aspect-auto"
         data-target="goals">
-        <img src="https://images.unsplash.com/photo-1585776245865-b92df54c6b25?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        <img
+          src="https://images.unsplash.com/photo-1585776245865-b92df54c6b25?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
           alt="Goals" />
         <div

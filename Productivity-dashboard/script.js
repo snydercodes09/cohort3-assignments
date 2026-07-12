@@ -37,6 +37,9 @@ const weatherHumidity = document.querySelector("#weatherHumidity");
 const weatherWind = document.querySelector("#weatherWind");
 const weatherIconContainer = document.querySelector("#weatherIconContainer");
 const miniWeatherCity = document.querySelector("#miniWeatherCity");
+const featureCards = document.querySelectorAll(".feature-card");
+const backButtons = document.querySelectorAll(".fullElem .back");
+const themeToggle = document.querySelector("#themeToggle");
 
 let totalFocusSeconds =
   Number(localStorage.getItem("dashboard-focus-seconds")) || 0;
@@ -234,9 +237,8 @@ function renderTodos() {
 
   filtered.forEach(function (todo) {
     const div = document.createElement("div");
-    div.className = `todo-item group flex items-start gap-4 p-4 rounded-xl transition-all duration-300 border border-white/5 ${
-      todo.completed ? "bg-white/5 opacity-60" : "bg-black/20 hover:bg-black/30"
-    }`;
+    div.className = `todo-item group flex items-start gap-4 p-4 rounded-xl transition-all duration-300 border border-white/5 ${todo.completed ? "bg-white/5 opacity-60" : "bg-black/20 hover:bg-black/30"
+      }`;
     div.setAttribute("data-id", todo.id);
 
     div.innerHTML = `
@@ -689,7 +691,7 @@ function fetchWeather() {
     if (!weatherLoaded) {
       getWeatherByCoords(26.1445, 91.7362);
     }
-  }, 5000);
+  }, 10000);
 
   navigator.geolocation.getCurrentPosition(
     function (position) {
@@ -700,7 +702,7 @@ function fetchWeather() {
       clearTimeout(geoTimeout);
       if (!weatherLoaded) getWeatherByCoords(26.1445, 91.7362);
     },
-    { timeout: 5000, maximumAge: 10000 },
+    { timeout: 10000, maximumAge: 20000 },
   );
 }
 
@@ -739,6 +741,23 @@ function getWeatherByCoords(lat, lon) {
 
       const miniTemp = miniWeatherTemp;
       if (miniTemp) miniTemp.innerHTML = temp;
+
+
+      const cityEl = miniWeatherCity;
+      if (cityEl) {
+        if (lat === 26.1445 && lon === 91.7362) {
+          cityEl.textContent = "Guwahati";
+        } else {
+          fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
+            .then(res => res.json())
+            .then(geo => {
+              cityEl.textContent = geo.city || geo.locality || "Unknown";
+            })
+            .catch(() => {
+              cityEl.textContent = "Unknown";
+            });
+        }
+      }
 
       const condText = weatherConditionText;
       if (condText) {
