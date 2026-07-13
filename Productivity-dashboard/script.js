@@ -134,8 +134,8 @@ const bgImages = {
     noon: "asset/bg_partlyCloudy.png",
     afternoon: "asset/bg_partlyCloudy.png",
     goldenHour: "asset/bg_partlyCloudy.png",
-    evening: "asset/bg_partlyCloudy_night.png",
-    night: "asset/bg_partlyCloudy_night.png",
+    evening: "asset/bg_partlycloudy_night.png",
+    night: "asset/bg_partlycloudy_night.png",
   },
   thunderstorm: {
     morning: "asset/bg_thunderstorm.png",
